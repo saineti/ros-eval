@@ -4,11 +4,6 @@ import fetch_api
 import rospy
 import time
 
-def print_usage():
-    print 'Moves the torso to a certain height between [0.0, 0.4]'
-    print 'Usage: rosrun applications torso_demo.py 0.4'
-
-
 def wait_for_time():
     """Wait for simulated time to begin.
     """
@@ -19,11 +14,9 @@ def wait_for_time():
 def main():
     rospy.init_node('raising_torso_demo')
     wait_for_time()
-    argv = rospy.myargv()
-
+    
     torso = fetch_api.Torso()
     display = fetch_api.Display()
-
 
     display.display_msg("I\'m going to raise my torso now!")
     time.sleep(2)
