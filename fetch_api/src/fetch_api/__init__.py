@@ -3,4 +3,4 @@ from .arm_joints import ArmJoints
 from .base import Base
 from .gripper import Gripper
 from .torso import Torso
-from .blinky import Blinky 
+from .display import Display 

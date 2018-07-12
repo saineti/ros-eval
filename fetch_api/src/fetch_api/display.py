@@ -7,7 +7,7 @@ import blinky.msg
 
 ACTION_SERVER = 'blinky'
 
-class Blinky(object):
+class Display(object):
     """Blinky controls the Blinky face.
     """
     def __init__(self):
@@ -22,15 +22,15 @@ class Blinky(object):
             question: The question to ask.
             choices: The possible choices for the question.
         """
-        goal = FaceGoal()
-        goal.display_type = FaceGoal.ASK_CHOICE
+        goal = blinky.msg.FaceGoal()
+        goal.display_type = 'ask_choice' 
         goal.question = question
         goal.choices = choices
         self._client.send_goal(goal)
 
     def display_msg(self, message):
-        goal = FaceGoal()
-        goal.display_type = FaceGoal.DISPLAY_MESSAGE
+        goal = blinky.msg.FaceGoal()
+        goal.display_type = 'display_message' 
         goal.h1_text = message
         goal.h2_text = ''
 
@@ -50,6 +50,6 @@ class Blinky(object):
             state == actionlib_msgs.msg.GoalStatus.ABORTED or \
             state == actionlib_msgs.msg.GoalStatus.SUCCEEDED or \
             state == actionlib_msgs.msg.GoalStatus.LOST: 
-          return true
+          return True
         
-        return false
+        return False

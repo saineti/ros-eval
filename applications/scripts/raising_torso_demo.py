@@ -22,23 +22,23 @@ def main():
     argv = rospy.myargv()
 
     torso = fetch_api.Torso()
-    blinky = fetch_api.Blinky()
+    display = fetch_api.Display()
 
 
-    blinky.display_msg("I\'m going to raise my torso now!")
+    display.display_msg("I\'m going to raise my torso now!")
     time.sleep(2)
     torso.set_height(0.4)
     choices = ["Stop!"]
-    blinky.ask_mc("Press \'Stop!\' whenever I am tall enough for you!", choices)
-    while not blinky.is_done() and not torso.is_done(): 
+    display.ask_mc("Press \'Stop!\' whenever I am tall enough for you!", choices)
+    while not display.is_done() and not torso.is_done(): 
         time.sleep(0.2)
     
-    item = blinky.get_result()
+    item = display.get_result()
     if item == "Stop!":
         torso.cancel()
-        blinky.display_msg("Perfect!")
+        display.display_msg("Perfect!")
     else:
-        blinky.display_msg("I only get this tall!")
+        display.display_msg("I only get this tall!")
 
     time.sleep(2)
 

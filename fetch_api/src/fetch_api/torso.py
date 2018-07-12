@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import actionlib
+import actionlib_msgs
 import control_msgs.msg
 import rospy
 import trajectory_msgs.msg
@@ -44,10 +45,10 @@ class Torso(object):
     def cancel(self):
         self._client.cancel_all_goals()
 
-    def getResult(self):
+    def get_result(self):
         return self._client.get_result()
 
-    def isDone(self):
+    def is_done(self):
         state = self._client.get_state()
         if state == actionlib_msgs.msg.GoalStatus.PREEMPTED or \
             state == actionlib_msgs.msg.GoalStatus.RECALLED or \
@@ -55,6 +56,6 @@ class Torso(object):
             state == actionlib_msgs.msg.GoalStatus.ABORTED or \
             state == actionlib_msgs.msg.GoalStatus.SUCCEEDED or \
             state == actionlib_msgs.msg.GoalStatus.LOST: 
-          return true
+          return True
         
-        return false
+        return False
