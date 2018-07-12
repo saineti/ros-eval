@@ -40,4 +40,21 @@ class Torso(object):
         point.time_from_start = rospy.Duration(TIME_FROM_START)
         goal.trajectory.points.append(point)
         self._client.send_goal(goal)
-        self._client.wait_for_result(rospy.Duration(10))
+
+    def cancel(self):
+        self._client.cancel_all_goals()
+
+    def getResult(self):
+        return self._client.get_result()
+
+    def isDone(self):
+        state = self._client.get_state()
+        if state == actionlib_msgs.msg.GoalStatus.PREEMPTED or \
+            state == actionlib_msgs.msg.GoalStatus.RECALLED or \
+            state == actionlib_msgs.msg.GoalStatus.REJECTED or \
+            state == actionlib_msgs.msg.GoalStatus.ABORTED or \
+            state == actionlib_msgs.msg.GoalStatus.SUCCEEDED or \
+            state == actionlib_msgs.msg.GoalStatus.LOST: 
+          return true
+        
+        return false
