@@ -37,7 +37,9 @@ class Display(object):
         self._client.send_goal(goal)
 
     def cancel(self):
-        self._client.cancel_all_goals()
+        goal = blinky.msg.FaceGoal()
+        goal.display_type = 'default' 
+        self._client.send_goal(goal)
 
     def get_result(self):
         return self._client.get_result()

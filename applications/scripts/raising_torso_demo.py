@@ -33,15 +33,13 @@ def main():
     while not display.is_done() and not torso.is_done(): 
         time.sleep(0.2)
     
-    item = display.get_result().choice
-    if item == "Stop!":
+    if display.is_done():
         torso.cancel()
         display.display_msg("Perfect!")
     else:
         display.display_msg("I only get this tall!")
-
     time.sleep(2)
-
+    display.cancel()
 
 if __name__ == '__main__':
     main()
