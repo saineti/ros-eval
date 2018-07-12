@@ -23,14 +23,14 @@ class Display(object):
             choices: The possible choices for the question.
         """
         goal = blinky.msg.FaceGoal()
-        goal.display_type = 'ask_choice' 
+        goal.display_type = 'askMultipleChoice' 
         goal.question = question
         goal.choices = choices
         self._client.send_goal(goal)
 
     def display_msg(self, message):
         goal = blinky.msg.FaceGoal()
-        goal.display_type = 'display_message' 
+        goal.display_type = 'displayMessage' 
         goal.h1_text = message
         goal.h2_text = ''
 

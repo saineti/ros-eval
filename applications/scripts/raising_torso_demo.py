@@ -33,7 +33,7 @@ def main():
     while not display.is_done() and not torso.is_done(): 
         time.sleep(0.2)
     
-    item = display.get_result()
+    item = display.get_result().choice
     if item == "Stop!":
         torso.cancel()
         display.display_msg("Perfect!")
