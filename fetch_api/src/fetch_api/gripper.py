@@ -24,7 +24,7 @@ class Gripper(object):
         """
         goal = control_msgs.msg.GripperCommandGoal()
         goal.command.position = OPENED_POS
-        self._client.send_goal_and_wait(goal, rospy.Duration(10))
+        self._client.send_goal(goal)
 
     def close(self, max_effort=MAX_EFFORT):
         """Closes the gripper.
@@ -36,4 +36,4 @@ class Gripper(object):
         goal = control_msgs.msg.GripperCommandGoal()
         goal.command.position = CLOSED_POS
         goal.command.max_effort = max_effort
-        self._client.send_goal_and_wait(goal, rospy.Duration(10))
+        self._client.send_goal(goal)
